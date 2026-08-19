@@ -1,0 +1,1059 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Bali & East Java Odyssey — Sep 4–14</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@500;600;700;800&family=Poppins:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --sky-top:#6cc7f2;
+    --sky-mid:#a7ddf5;
+    --sky-low:#e7f6ee;
+    --sand:#ffe6a8;
+    --sand-dark:#f3c874;
+    --ocean:#0fb7c4;
+    --ocean-deep:#0a8fa8;
+    --coral:#ff6f59;
+    --coral-dark:#e8543f;
+    --sun:#ffce54;
+    --leaf:#2f9e6b;
+    --leaf-dark:#1f7a52;
+    --ink:#1b3a4b;
+    --ink-soft:#3f5c6c;
+    --card-bg:rgba(255,255,255,0.82);
+    --card-border:rgba(27,58,75,0.12);
+  }
+  *{box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  body{
+    margin:0;
+    font-family:'Poppins', -apple-system, BlinkMacSystemFont, sans-serif;
+    background: linear-gradient(180deg, var(--sky-top) 0%, var(--sky-mid) 30%, var(--sky-low) 55%, #fff6e2 100%);
+    color: var(--ink);
+    overflow-x:hidden;
+  }
+  h1,h2,h3{font-family:'Baloo 2', 'Poppins', sans-serif;}
+
+  /* ---------- FLOATING BEACH DECOR ---------- */
+  .sun{
+    position:absolute; top:6%; right:8%;
+    width:110px; height:110px; border-radius:50%;
+    background: radial-gradient(circle at 35% 35%, #fff5c6, var(--sun) 60%, #ffb347 100%);
+    box-shadow: 0 0 60px 20px rgba(255,206,84,0.55);
+    animation: sunPulse 4s ease-in-out infinite;
+    z-index:1;
+  }
+  @keyframes sunPulse{ 0%,100%{transform:scale(1);} 50%{transform:scale(1.06);} }
+
+  .cloud{
+    position:absolute;
+    opacity:.9;
+    animation: driftCloud linear infinite;
+    z-index:1;
+    pointer-events:none;
+  }
+  .cloud svg{ width:100%; height:100%; filter: drop-shadow(0 4px 6px rgba(0,0,0,0.05)); }
+  @keyframes driftCloud{
+    from{ transform: translateX(-10vw); }
+    to{ transform: translateX(110vw); }
+  }
+
+  .palm{
+    position:absolute;
+    bottom:0;
+    width:140px;
+    z-index:2;
+    pointer-events:none;
+    opacity:.95;
+  }
+  .palm.left{ left:-10px; transform: scaleX(-1); }
+  .palm.right{ right:-10px; }
+
+  .wave-divider{
+    display:block;
+    width:100%;
+    line-height:0;
+    position:relative;
+    z-index:2;
+  }
+  .wave-divider svg{ width:100%; height:80px; display:block; }
+
+  /* ---------- HERO ---------- */
+  .hero{
+    position:relative;
+    min-height:100vh;
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+    justify-content:center;
+    text-align:center;
+    overflow:hidden;
+    background:
+      radial-gradient(ellipse at 50% 0%, rgba(255,255,255,0.5), transparent 60%),
+      linear-gradient(180deg, var(--sky-top) 0%, var(--sky-mid) 55%, #cdeee0 100%);
+    padding-bottom:80px;
+  }
+  .hero-content{ position:relative; z-index:5; padding: 0 20px; }
+  .hero h1{
+    font-size: clamp(2.1rem, 5.6vw, 4rem);
+    margin:0 0 .5rem;
+    color: var(--ink);
+    text-shadow: 0 4px 0 rgba(255,255,255,0.6);
+  }
+  .hero h1 span{ color: var(--coral); }
+  .hero p.subtitle{
+    color: var(--ink-soft);
+    font-size:1.12rem;
+    max-width:580px;
+    margin: 0 auto 1.8rem;
+    font-weight:500;
+  }
+  .hero-dates{
+    display:flex;
+    flex-wrap:wrap;
+    justify-content:center;
+    gap:1.6rem;
+    font-size:.9rem;
+    color: var(--ink-soft);
+    margin-bottom:2rem;
+  }
+  .hero-dates div{
+    background: rgba(255,255,255,0.55);
+    border:1px solid rgba(255,255,255,0.8);
+    border-radius:14px;
+    padding:.6rem 1.1rem;
+    backdrop-filter: blur(4px);
+  }
+  .hero-dates b{ color: var(--coral-dark); display:block; font-size:1.35rem; font-family:'Baloo 2',sans-serif; }
+
+  .plane-track{
+    position:absolute;
+    top:16%;
+    left:-10%;
+    width:120%;
+    height:220px;
+    pointer-events:none;
+    z-index:3;
+  }
+  .plane-icon{
+    position:absolute;
+    font-size:2.4rem;
+    filter: drop-shadow(0 4px 8px rgba(0,0,0,0.2));
+  }
+
+  .scroll-hint{
+    position:relative;
+    z-index:5;
+    color: var(--ink-soft);
+    font-size:.78rem;
+    letter-spacing:3px;
+    text-transform:uppercase;
+    font-weight:600;
+    animation: bob 2s ease-in-out infinite;
+  }
+  @keyframes bob{
+    0%,100%{transform:translateY(0);}
+    50%{transform:translateY(8px);}
+  }
+
+  .hero-waves{ position:absolute; bottom:-2px; left:0; width:100%; z-index:4; }
+
+  /* ---------- STATS BAR ---------- */
+  .stats{
+    display:flex;
+    flex-wrap:wrap;
+    justify-content:center;
+    max-width:920px;
+    margin: -50px auto 50px;
+    position:relative;
+    z-index:6;
+    background: rgba(255,255,255,0.85);
+    border:1px solid var(--card-border);
+    backdrop-filter: blur(10px);
+    border-radius:20px;
+    overflow:hidden;
+    box-shadow: 0 10px 40px rgba(15,90,110,0.15);
+  }
+  .stat{
+    flex:1 1 140px;
+    text-align:center;
+    padding:1.5rem 1rem;
+    border-right:1px solid var(--card-border);
+  }
+  .stat:last-child{border-right:none;}
+  .stat .icon{ font-size:1.6rem; }
+  .stat .num{font-size:1.5rem;font-weight:700;color:var(--coral-dark); font-family:'Baloo 2',sans-serif;}
+  .stat .lbl{font-size:.72rem;text-transform:uppercase;letter-spacing:1.2px;color:var(--ink-soft);}
+
+  /* ---------- TIMELINE ---------- */
+  .timeline-section{
+    position:relative;
+    background: linear-gradient(180deg, #fff6e2 0%, #ffedc4 100%);
+    padding-bottom:40px;
+  }
+  .timeline-wrap{
+    position:relative;
+    max-width:1000px;
+    margin: 0 auto;
+    padding: 20px 20px 160px;
+  }
+  .timeline-header{
+    text-align:center;
+    margin-bottom:40px;
+    position:relative;
+    z-index:3;
+  }
+  .timeline-header h2{
+    font-size:2.1rem;
+    margin-bottom:.3rem;
+    color: var(--ink);
+  }
+  .timeline-header p{color:var(--ink-soft);}
+  .legend{
+    display:flex;
+    justify-content:center;
+    gap:1.4rem;
+    flex-wrap:wrap;
+    margin-top:1rem;
+    font-size:.8rem;
+    color:var(--ink-soft);
+  }
+  .legend span{ display:inline-flex; align-items:center; gap:.35rem; }
+
+  .route-svg{
+    position:absolute;
+    top:0; left:0;
+    width:100%;
+    height:100%;
+    z-index:0;
+    overflow:visible;
+  }
+  #routePath{
+    fill:none;
+    stroke: var(--coral);
+    stroke-width:3.5;
+    stroke-linecap:round;
+    stroke-dasharray: 3 14;
+    opacity:.8;
+  }
+
+  .traveler{
+    position:absolute;
+    width:76px;
+    height:76px;
+    z-index:5;
+    cursor:pointer;
+    transform: translate(-50%,-50%);
+    filter: drop-shadow(0 8px 10px rgba(20,60,70,0.35));
+  }
+  .traveler-inner{
+    width:100%; height:100%;
+    animation: travelerBob 1.4s ease-in-out infinite;
+  }
+  .traveler:hover .traveler-inner{ animation-duration:.5s; }
+  .traveler .vehicle{ display:none; width:100%; height:100%; }
+  .traveler[data-mode="walk"] .vehicle-walk{ display:block; }
+  .traveler[data-mode="car"] .vehicle-car{ display:block; }
+  .traveler[data-mode="boat"] .vehicle-boat{ display:block; }
+  .traveler[data-mode="flight"] .vehicle-flight{ display:block; }
+  @keyframes travelerBob{
+    0%,100%{ transform: translateY(0); }
+    50%{ transform: translateY(-7px); }
+  }
+  .traveler-hint{
+    position:absolute;
+    top:-28px;
+    left:50%;
+    transform:translateX(-50%);
+    background: var(--coral);
+    color:#fff;
+    font-size:.6rem;
+    font-weight:700;
+    letter-spacing:.4px;
+    padding:.2rem .5rem;
+    border-radius:999px;
+    white-space:nowrap;
+    opacity:0;
+    animation: hintFade 3.5s ease-in-out infinite;
+    pointer-events:none;
+    z-index:6;
+  }
+  @keyframes hintFade{
+    0%,20%{opacity:0; transform:translateX(-50%) translateY(4px);}
+    35%,65%{opacity:1; transform:translateX(-50%) translateY(0);}
+    80%,100%{opacity:0; transform:translateX(-50%) translateY(4px);}
+  }
+  .traveler-wake{
+    position:absolute;
+    left:50%; top:82%;
+    width:40px; height:10px;
+    background: rgba(20,60,70,0.18);
+    border-radius:50%;
+    transform: translateX(-50%);
+    filter: blur(2px);
+    animation: wakeShrink 1.4s ease-in-out infinite;
+  }
+  @keyframes wakeShrink{
+    0%,100%{ transform: translateX(-50%) scale(1); opacity:.4; }
+    50%{ transform: translateX(-50%) scale(.65); opacity:.2; }
+  }
+
+  .day{
+    position:relative;
+    display:flex;
+    align-items:center;
+    margin-bottom:80px;
+    z-index:2;
+    min-height:60px;
+  }
+  .day:nth-child(odd) .day-card{margin-left:auto;}
+  .day:nth-child(even) .day-card{margin-right:auto;}
+  .day:nth-child(even){flex-direction:row-reverse;}
+
+  .day-node{
+    position:absolute;
+    top:50%;
+    transform:translate(-50%,-50%);
+    width:20px;height:20px;
+    border-radius:50%;
+    background: #fff;
+    border:3px solid var(--coral);
+    box-shadow: 0 0 0 6px rgba(255,111,89,0.14);
+    z-index:3;
+    transition: box-shadow .3s, background .3s;
+  }
+  .day:nth-child(odd) .day-node{ left:70%; }
+  .day:nth-child(even) .day-node{ left:30%; }
+  .day.active .day-node{
+    background: var(--coral);
+    box-shadow: 0 0 0 10px rgba(255,111,89,0.22);
+  }
+
+  .day-card{
+    width:42%;
+    background: var(--card-bg);
+    border:1px solid var(--card-border);
+    border-radius:20px;
+    padding:1.3rem 1.5rem;
+    backdrop-filter: blur(6px);
+    opacity:0;
+    transform: translateY(30px);
+    transition: opacity .7s ease, transform .7s ease;
+    position:relative;
+    box-shadow: 0 10px 26px rgba(20,60,70,0.08);
+    cursor:pointer;
+  }
+  .day.visible .day-card{opacity:1; transform:translateY(0);}
+
+  .day-card .date{
+    display:inline-block;
+    font-size:.7rem;
+    letter-spacing:1.5px;
+    text-transform:uppercase;
+    color: #fff;
+    background: var(--coral);
+    padding:.25rem .7rem;
+    border-radius:999px;
+    margin-bottom:.6rem;
+    font-weight:600;
+  }
+  .day-card h3{
+    margin:.1rem 0 .4rem;
+    font-size:1.3rem;
+    color: var(--ink);
+  }
+  .day-card .tag{
+    font-size:.78rem;
+    color: var(--ocean-deep);
+    margin-bottom:.6rem;
+    font-weight:600;
+  }
+  .day-card p.desc{
+    font-size:.9rem;
+    line-height:1.5;
+    color: var(--ink-soft);
+    margin:0;
+  }
+  .day-card .icon-badge{
+    position:absolute;
+    top:-16px;
+    font-size:1.5rem;
+    background: #fff;
+    border:2px solid var(--sand-dark);
+    border-radius:50%;
+    width:42px;height:42px;
+    display:flex;align-items:center;justify-content:center;
+    box-shadow: 0 4px 10px rgba(20,60,70,0.15);
+  }
+  .day:nth-child(odd) .icon-badge{right:-16px;}
+  .day:nth-child(even) .icon-badge{left:-16px;}
+
+  .day-card .mode-chip{
+    position:absolute;
+    top:-14px;
+    font-size:.95rem;
+    background: var(--ocean);
+    color:#fff;
+    border-radius:999px;
+    width:30px;height:30px;
+    display:flex;align-items:center;justify-content:center;
+    box-shadow: 0 4px 8px rgba(20,60,70,0.2);
+  }
+  .day:nth-child(odd) .mode-chip{left:-14px;}
+  .day:nth-child(even) .mode-chip{right:-14px;}
+
+  .booked-tag{
+    display:inline-flex;
+    align-items:center;
+    gap:.3rem;
+    margin-top:.7rem;
+    font-size:.7rem;
+    font-weight:700;
+    letter-spacing:.4px;
+    color: var(--leaf-dark);
+    background: rgba(47,158,107,0.14);
+    border:1px solid rgba(47,158,107,0.3);
+    padding:.25rem .6rem;
+    border-radius:999px;
+  }
+
+  .day-card:hover{
+    border-color: rgba(255,111,89,0.5);
+    box-shadow: 0 14px 34px rgba(255,111,89,0.18);
+    transform: translateY(-3px);
+  }
+  .day.visible .day-card:hover{ transform: translateY(-3px); }
+
+  .day.flight .day-card{
+    border-style:dashed;
+    border-color: rgba(255,111,89,0.5);
+  }
+
+  /* ---------- FOOTER ---------- */
+  footer{
+    text-align:center;
+    padding: 2.2rem 1rem 2.6rem;
+    color: #fff;
+    font-size:.85rem;
+    background: linear-gradient(180deg, var(--ocean-deep), #06657a);
+  }
+  footer b{color:var(--sun);}
+
+  /* ---------- MODAL ---------- */
+  .modal-overlay{
+    position:fixed;
+    inset:0;
+    background: rgba(10,40,50,0.55);
+    backdrop-filter: blur(4px);
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    z-index:100;
+    opacity:0;
+    pointer-events:none;
+    transition: opacity .3s ease;
+    padding:20px;
+  }
+  .modal-overlay.open{ opacity:1; pointer-events:auto; }
+  .modal-box{
+    background: linear-gradient(180deg, #ffffff, #fff8ea);
+    border:1px solid var(--card-border);
+    border-radius:24px;
+    max-width:520px;
+    width:100%;
+    max-height:85vh;
+    overflow-y:auto;
+    padding:2rem;
+    position:relative;
+    transform: translateY(20px) scale(.97);
+    transition: transform .35s ease;
+    box-shadow: 0 30px 70px rgba(10,40,50,0.35);
+  }
+  .modal-overlay.open .modal-box{ transform: translateY(0) scale(1); }
+  .modal-close{
+    position:absolute;
+    top:1rem; right:1rem;
+    background: rgba(27,58,75,0.08);
+    border:none;
+    color: var(--ink);
+    width:34px; height:34px;
+    border-radius:50%;
+    font-size:1.1rem;
+    cursor:pointer;
+    display:flex; align-items:center; justify-content:center;
+    transition: background .2s;
+  }
+  .modal-close:hover{ background: rgba(255,111,89,0.25); }
+  .modal-icon{ font-size:2.6rem; margin-bottom:.5rem; display:block; }
+  .modal-box .date{
+    display:inline-block;
+    font-size:.7rem;
+    letter-spacing:1.5px;
+    text-transform:uppercase;
+    color: #fff;
+    background: var(--coral);
+    padding:.25rem .7rem;
+    border-radius:999px;
+    margin-bottom:.6rem;
+    font-weight:600;
+  }
+  .modal-box h2{ margin:.2rem 0 .3rem; font-size:1.55rem; color: var(--ink); }
+  .modal-box .modal-tag{ color: var(--ocean-deep); font-size:.85rem; margin-bottom:1.1rem; font-weight:600; }
+  .modal-box .modal-desc{ font-size:.92rem; line-height:1.6; color: var(--ink-soft); margin-bottom:1.3rem; }
+  .modal-section-title{
+    font-size:.76rem;
+    text-transform:uppercase;
+    letter-spacing:1.4px;
+    color: var(--leaf-dark);
+    margin-bottom:.6rem;
+    font-weight:700;
+  }
+  .modal-list{ list-style:none; margin:0 0 1.3rem; padding:0; }
+  .modal-list li{
+    font-size:.88rem;
+    line-height:1.5;
+    padding:.45rem 0 .45rem 1.6rem;
+    position:relative;
+    border-bottom:1px dashed var(--card-border);
+    color: var(--ink-soft);
+  }
+  .modal-list li:last-child{border-bottom:none;}
+  .modal-list li::before{ content:"🏖️"; position:absolute; left:0; font-size:.8rem; }
+  .modal-tip{
+    background: rgba(15,183,196,0.1);
+    border:1px solid rgba(15,183,196,0.3);
+    border-radius:14px;
+    padding:.9rem 1.1rem;
+    font-size:.85rem;
+    line-height:1.5;
+    color: var(--ink);
+  }
+  .modal-tip b{ color: var(--ocean-deep); }
+  .modal-flight-list{ display:flex; flex-direction:column; gap:.7rem; margin-bottom:1.4rem; }
+  .modal-flight-card{
+    background: rgba(255,111,89,0.06);
+    border:1px solid rgba(255,111,89,0.25);
+    border-radius:14px;
+    padding:.8rem 1rem;
+  }
+  .modal-flight-card .ff-top{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    font-size:.8rem;
+    font-weight:700;
+    color: var(--coral-dark);
+    margin-bottom:.5rem;
+  }
+  .modal-flight-card .ff-route{
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    gap:.6rem;
+    font-size:.85rem;
+    color: var(--ink);
+  }
+  .modal-flight-card .ff-route .ff-place{ flex:1; }
+  .modal-flight-card .ff-route .ff-place .ff-time{ display:block; font-weight:700; font-size:.95rem; }
+  .modal-flight-card .ff-route .ff-place .ff-airport{ font-size:.72rem; color: var(--ink-soft); }
+  .modal-flight-card .ff-arrow{ color: var(--ocean-deep); font-size:1rem; }
+  .modal-flight-card .ff-meta{
+    margin-top:.5rem;
+    font-size:.72rem;
+    color: var(--ink-soft);
+    display:flex;
+    justify-content:space-between;
+  }
+  .modal-mode{
+    display:inline-flex;
+    align-items:center;
+    gap:.4rem;
+    font-size:.78rem;
+    font-weight:600;
+    color: var(--ocean-deep);
+    background: rgba(15,183,196,0.12);
+    padding:.3rem .7rem;
+    border-radius:999px;
+    margin-bottom:1rem;
+  }
+  .modal-nav{ display:flex; justify-content:space-between; margin-top:1.6rem; gap:.8rem; }
+  .modal-nav button{
+    flex:1;
+    background: rgba(27,58,75,0.06);
+    border:1px solid var(--card-border);
+    color: var(--ink);
+    padding:.6rem 1rem;
+    border-radius:12px;
+    cursor:pointer;
+    font-size:.82rem;
+    font-weight:600;
+    transition: background .2s, border-color .2s;
+  }
+  .modal-nav button:hover{ background: rgba(255,111,89,0.18); border-color: rgba(255,111,89,0.4); }
+  .modal-nav button:disabled{ opacity:.3; cursor:not-allowed; }
+
+  @media (max-width: 720px){
+    .day, .day:nth-child(even){flex-direction:row;}
+    .day:nth-child(odd) .day-node, .day:nth-child(even) .day-node{left:28px;}
+    .day-card{width:calc(100% - 66px); margin-left:66px !important; margin-right:0 !important;}
+    .day:nth-child(odd) .icon-badge, .day:nth-child(even) .icon-badge{left:-14px; right:auto;}
+    .day:nth-child(odd) .mode-chip, .day:nth-child(even) .mode-chip{right:-14px; left:auto;}
+    .hero-dates{gap:.8rem;}
+    .palm{width:90px;}
+    .sun{width:75px;height:75px; top:4%; right:5%;}
+    .traveler{width:58px;height:58px;}
+  }
+</style>
+</head>
+<body>
+
+<!-- ================= HERO ================= -->
+<section class="hero">
+  <div class="sun"></div>
+  <div class="cloud" style="top:10%; width:140px; height:60px; animation-duration:55s;">
+    <svg viewBox="0 0 200 100"><ellipse cx="60" cy="60" rx="50" ry="30" fill="#fff"/><ellipse cx="110" cy="45" rx="45" ry="35" fill="#fff"/><ellipse cx="150" cy="65" rx="40" ry="25" fill="#fff"/></svg>
+  </div>
+  <div class="cloud" style="top:28%; width:100px; height:45px; animation-duration:70s; animation-delay:-20s;">
+    <svg viewBox="0 0 200 100"><ellipse cx="60" cy="60" rx="50" ry="30" fill="#fff"/><ellipse cx="110" cy="45" rx="45" ry="35" fill="#fff"/><ellipse cx="150" cy="65" rx="40" ry="25" fill="#fff"/></svg>
+  </div>
+  <div class="cloud" style="top:6%; width:80px; height:36px; animation-duration:40s; animation-delay:-10s;">
+    <svg viewBox="0 0 200 100"><ellipse cx="60" cy="60" rx="50" ry="30" fill="#fff"/><ellipse cx="110" cy="45" rx="45" ry="35" fill="#fff"/><ellipse cx="150" cy="65" rx="40" ry="25" fill="#fff"/></svg>
+  </div>
+
+  <div class="plane-track">
+    <svg width="100%" height="100%" viewBox="0 0 1200 220" preserveAspectRatio="none" style="position:absolute;top:0;left:0;">
+      <path id="heroDash" d="M -50 170 C 250 50, 550 210, 850 70 S 1250 30, 1300 -10"
+            fill="none" stroke="#ff6f59" stroke-width="3" stroke-dasharray="3 12" opacity="0.6"/>
+    </svg>
+    <div class="plane-icon" id="heroPlane">✈️</div>
+  </div>
+
+  <div class="hero-content">
+    <h1>Chennai → <span>Bali</span> & East Java</h1>
+    <p class="subtitle">A 10-day island-hopping, volcano-chasing, waterfall-hunting escape across Singapore, Bali & East Java. 🌴🌊</p>
+    <div class="hero-dates">
+      <div><b>Sep 4</b>Departure</div>
+      <div><b>Sep 14</b>Return</div>
+      <div><b>10</b>Days</div>
+      <div><b>7</b>Destinations</div>
+    </div>
+    <div class="scroll-hint">Scroll to start the journey ↓</div>
+  </div>
+
+  <div class="hero-waves">
+    <svg viewBox="0 0 1440 150" preserveAspectRatio="none"><path d="M0,80 C 240,140 480,20 720,70 C 960,120 1200,40 1440,90 L1440,150 L0,150 Z" fill="#cdeee0"/></svg>
+  </div>
+</section>
+
+<div class="palm left"><svg viewBox="0 0 140 260"><path d="M70 260 L70 120" stroke="#7a5230" stroke-width="10" fill="none"/><path d="M70 130 C 20 110 5 60 15 20 C 45 55 65 90 70 130Z" fill="#2f9e6b"/><path d="M70 130 C 110 95 130 45 120 5 C 90 45 75 85 70 130Z" fill="#2f9e6b"/><path d="M70 125 C 30 140 -5 150 -20 140 C 5 165 45 165 70 140Z" fill="#1f7a52"/><path d="M70 125 C 110 148 145 152 160 138 C 130 168 90 165 70 140Z" fill="#1f7a52"/><path d="M70 128 C 55 150 45 175 55 200 C 75 175 78 150 70 128Z" fill="#2f9e6b"/></svg></div>
+
+<!-- ================= STATS ================= -->
+<div class="stats">
+  <div class="stat"><div class="icon">🌏</div><div class="num">2</div><div class="lbl">Countries</div></div>
+  <div class="stat"><div class="icon">🌋</div><div class="num">3</div><div class="lbl">Volcanoes</div></div>
+  <div class="stat"><div class="icon">🏝️</div><div class="num">1</div><div class="lbl">Sacred Island</div></div>
+  <div class="stat"><div class="icon">🐬</div><div class="num">∞</div><div class="lbl">Memories</div></div>
+</div>
+
+<!-- ================= TIMELINE ================= -->
+<div class="timeline-section">
+  <div class="palm right" style="top:0; bottom:auto; opacity:.5;"></div>
+  <div class="timeline-wrap">
+    <div class="timeline-header">
+      <h2>The Route 🗺️</h2>
+      <p>Follow the dotted trail — the way you travel changes with the terrain.</p>
+      <div class="legend">
+        <span>✈️ Flight</span>
+        <span>🚙 Road trip</span>
+        <span>⛵ Boat crossing</span>
+        <span>🚶 On foot / local</span>
+      </div>
+    </div>
+
+    <svg class="route-svg" id="routeSvg" preserveAspectRatio="none">
+      <path id="routePath" d=""/>
+    </svg>
+
+    <div class="traveler" id="traveler" data-mode="walk" title="Click me for the detailed plan!">
+      <div class="traveler-hint">Tap me!</div>
+      <div class="traveler-inner">
+        <!-- WALK -->
+        <svg class="vehicle vehicle-walk" viewBox="0 0 64 64">
+          <ellipse cx="32" cy="16" rx="12" ry="5" fill="#5b3a29"/>
+          <ellipse cx="32" cy="19" rx="13" ry="4" fill="#7a4c33"/>
+          <circle cx="32" cy="26" r="11" fill="#f3b48a"/>
+          <rect x="21" y="14" width="22" height="8" rx="4" fill="#3a2a20"/>
+          <rect x="26" y="27" width="5" height="3" rx="1.5" fill="#22303f"/>
+          <rect x="33" y="27" width="5" height="3" rx="1.5" fill="#22303f"/>
+          <path d="M27 34 Q32 38 37 34" stroke="#8a4a35" stroke-width="2" fill="none" stroke-linecap="round"/>
+          <rect x="20" y="36" width="24" height="18" rx="8" fill="#ff6f59"/>
+          <rect x="12" y="40" width="10" height="14" rx="4" fill="#0fb7c4"/>
+          <circle cx="17" cy="40" r="3" fill="#0a8fa8"/>
+          <rect x="17" y="50" width="7" height="10" rx="3" fill="#274357"/>
+          <rect x="33" y="50" width="7" height="10" rx="3" fill="#274357"/>
+          <rect x="15" y="58" width="10" height="4" rx="2" fill="#f4e9d8"/>
+          <rect x="31" y="58" width="10" height="4" rx="2" fill="#f4e9d8"/>
+          <path d="M42 40 Q52 34 50 24" stroke="#f3b48a" stroke-width="4" fill="none" stroke-linecap="round"/>
+        </svg>
+        <!-- CAR -->
+        <svg class="vehicle vehicle-car" viewBox="0 0 64 64">
+          <ellipse cx="32" cy="58" rx="22" ry="3" fill="rgba(20,60,70,0.15)"/>
+          <rect x="14" y="30" width="36" height="18" rx="8" fill="#ff6f59"/>
+          <path d="M20 30 Q24 16 32 16 Q40 16 44 30 Z" fill="#0fb7c4"/>
+          <path d="M23 29 Q26 20 32 20 Q38 20 41 29 Z" fill="#bfeff5"/>
+          <circle cx="32" cy="22" r="7" fill="#f3b48a"/>
+          <rect x="27" y="17" width="10" height="5" rx="2.5" fill="#3a2a20"/>
+          <circle cx="22" cy="50" r="6" fill="#22303f"/>
+          <circle cx="22" cy="50" r="2.4" fill="#c7cdd2"/>
+          <circle cx="42" cy="50" r="6" fill="#22303f"/>
+          <circle cx="42" cy="50" r="2.4" fill="#c7cdd2"/>
+          <rect x="10" y="36" width="6" height="6" rx="2" fill="#ffce54"/>
+          <rect x="48" y="36" width="6" height="6" rx="2" fill="#e8543f"/>
+        </svg>
+        <!-- BOAT -->
+        <svg class="vehicle vehicle-boat" viewBox="0 0 64 64">
+          <path d="M10 46 Q32 60 54 46 L48 52 Q32 58 16 52 Z" fill="#0a8fa8"/>
+          <path d="M12 46 L52 46 L46 34 L18 34 Z" fill="#f4e9d8"/>
+          <rect x="30" y="10" width="3" height="26" fill="#5b3a29"/>
+          <path d="M33 12 L33 30 L50 30 Z" fill="#ff6f59"/>
+          <circle cx="26" cy="26" r="7" fill="#f3b48a"/>
+          <rect x="21" y="21" width="10" height="5" rx="2.5" fill="#3a2a20"/>
+          <ellipse cx="32" cy="58" rx="26" ry="3" fill="rgba(15,183,196,0.25)"/>
+        </svg>
+        <!-- FLIGHT -->
+        <svg class="vehicle vehicle-flight" viewBox="0 0 64 64">
+          <path d="M6 34 L48 30 L58 34 L48 38 L6 34Z" fill="#f4e9d8"/>
+          <path d="M22 34 L10 20 L16 20 L28 34Z" fill="#0fb7c4"/>
+          <path d="M22 34 L10 48 L16 48 L28 34Z" fill="#0fb7c4"/>
+          <path d="M46 30 L54 22 L57 23 L52 32Z" fill="#ff6f59"/>
+          <circle cx="34" cy="34" r="8" fill="#bfeff5"/>
+          <circle cx="34" cy="34" r="6.4" fill="#f3b48a"/>
+          <rect x="29" y="30" width="10" height="4.5" rx="2.2" fill="#3a2a20"/>
+          <path d="M46 34 L58 34 L54 38 L46 36Z" fill="#0a8fa8"/>
+        </svg>
+      </div>
+      <div class="traveler-wake"></div>
+    </div>
+
+    <div class="timeline" id="timeline">
+      <!-- days injected by JS -->
+    </div>
+  </div>
+</div>
+
+<footer>
+  Bali & East Java Trip &middot; <b>Sep 4 – Sep 14</b> &middot; Safe travels, happy tan lines 🌊🏝️
+</footer>
+
+<!-- ================= DETAIL MODAL ================= -->
+<div class="modal-overlay" id="modalOverlay">
+  <div class="modal-box" id="modalBox">
+    <button class="modal-close" id="modalClose">✕</button>
+    <span class="modal-icon" id="modalIcon"></span>
+    <span class="date" id="modalDate"></span>
+    <h2 id="modalPlace"></h2>
+    <div class="modal-tag" id="modalTag"></div>
+    <div class="modal-mode" id="modalMode"></div>
+    <p class="modal-desc" id="modalDesc"></p>
+    <div id="modalFlightSection" style="display:none;">
+      <div class="modal-section-title">✈️ Flight Details</div>
+      <div class="modal-flight-list" id="modalFlightList"></div>
+    </div>
+    <div class="modal-section-title">🗓️ What to do</div>
+    <ul class="modal-list" id="modalList"></ul>
+    <div class="modal-section-title">🏨 Where to stay</div>
+    <p class="modal-desc" id="modalStay" style="margin-bottom:1.2rem;"></p>
+    <div class="modal-tip" id="modalTip"></div>
+    <div class="modal-nav">
+      <button id="modalPrev">← Previous stop</button>
+      <button id="modalNext">Next stop →</button>
+    </div>
+  </div>
+</div>
+
+<script>
+const MODE_LABEL = {
+  flight: "✈️ Traveling by flight",
+  car: "🚙 Traveling by road",
+  boat: "⛵ Traveling by boat",
+  walk: "🚶 Exploring on foot / local transfer"
+};
+
+const itinerary = [
+  {date:"Sep 4", place:"Chennai → Singapore", tag:"International Flight", icon:"✈️", flight:true, mode:"flight",
+   desc:"Late-night takeoff from Chennai on Scoot, landing in Singapore early the next morning — settle in and rest up for a long layover.",
+   details:["23:50 departure from Chennai (MAA) Terminal 2","Immigration on arrival at Changi (SIN) Terminal 1, 06:50 next morning","Freshen up before the full layover day ahead"],
+   stay:"Long Singapore layover — no overnight hotel needed before the connecting flight.",
+   tip:"It's an overnight flight — try to sleep on board so the Singapore layover day doesn't feel like a write-off.",
+   flightInfo:[
+     {flight:"TR 779 · Scoot B787-8", from:"Chennai (MAA) T2", to:"Singapore (SIN) T1", dep:"4 Sep, 23:50", arr:"5 Sep, 06:50", duration:"4h 30m", ref:"WCJ93T"}
+   ]},
+  {date:"Sep 5", place:"Singapore Layover", tag:"City Stopover", icon:"🏙️", mode:"walk",
+   details:["Land at Changi at 06:50 — store bags and freshen up airside or at a transit lounge","Morning at Gardens by the Bay — Cloud Forest & Flower Dome","Marina Bay Sands Skypark viewpoint","Lunch + shopping at Marina Bay / Chinatown","Evening hawker food crawl at Maxwell Food Centre","Head back to Changi T1 well before the 21:15 connecting flight to Denpasar"],
+   desc:"A long ~14.5-hour layover in Singapore — enough for a full sightseeing day before the evening flight onward to Bali.",
+   stay:"No hotel — full-day layover between flights at Changi.",
+   tip:"Buy an EZ-Link card on arrival — it makes MRT + bus hopping across the city painless during the layover."},
+  {date:"Sep 6", place:"Arrive in Bali", tag:"Island Arrival", icon:"🌴", flight:true, mode:"flight",
+   desc:"Fly from Singapore into Denpasar just after midnight and check into the Grand Zuri Hotel. Ease into island time with a late, quiet arrival.",
+   details:["21:15 departure from Singapore (SIN) Terminal 1","Lands in Denpasar (DPS) at 00:05 — technically the start of Sep 6","Late-night private transfer to Grand Zuri Hotel, Kuta/Seminyak","Quick check-in and straight to bed — full day starts tomorrow"],
+   stay:"Grand Zuri Hotel — late check-in.",
+   tip:"Grab a local SIM (Telkomsel) at the airport on arrival — cheap data for Grab rides and maps for the rest of the trip.",
+   flightInfo:[
+     {flight:"TR 346 · Scoot A321neo", from:"Singapore (SIN) T1", to:"Denpasar (DPS)", dep:"5 Sep, 21:15", arr:"6 Sep, 00:05", duration:"2h 50m", ref:"WCJ93T"}
+   ]},
+  {date:"Sep 6", place:"Grand Zuri Hotel", tag:"Stay", icon:"🏨", mode:"car",
+   desc:"Check-in and unwind — pool time, welcome dinner, and planning the days ahead over cocktails.",
+   details:["Pool time and unwind after travel","Spa or massage booking for later in the trip","Plan the Ubud + East Java route over dinner","Early night — Ubud transfer tomorrow"],
+   stay:"Grand Zuri Hotel, Kuta.",
+   tip:"Book any Ubud driver/car in advance — private transfers are far more comfortable than shared shuttles."},
+  {date:"Sep 7", place:"Ubud", tag:"Rice Terraces & Culture", icon:"🌾", mode:"car",
+   desc:"Head inland to Ubud — Tegallalang rice terraces, the Sacred Monkey Forest, and art markets. Slow travel through Bali's cultural heart.",
+   details:["Morning transfer from Kuta to Ubud (~1.5 hrs)","Tegallalang Rice Terraces — swing photos + short walk","Sacred Monkey Forest Sanctuary","Ubud Art Market for souvenirs and batik","Dinner at a rice-field-view restaurant"],
+   stay:"Ubud boutique villa/resort — 2 nights.",
+   tip:"Visit Tegallalang before 9am to beat the tour bus crowds and the midday heat."},
+  {date:"Sep 8", place:"Ubud", tag:"ATV & River Rafting", icon:"🚣", mode:"car",
+   desc:"An adrenaline-filled second day in Ubud — ATV rides through jungle and rice-field trails followed by white-water river rafting on the Ayung River.",
+   details:["Morning ATV/quad bike ride through jungle, rice paddies and villages","Change and transfer to the Ayung River put-in point","White-water river rafting down the Ayung River (~1.5-2 hrs)","Lunch and hot shower/change at the rafting basecamp","Evening Balinese massage / spa treatment to recover"],
+   stay:"Same Ubud stay — night 2.",
+   tip:"Bring a full change of clothes and waterproof/dry bag for phones and valuables — you'll get soaked on both the ATV and the rafting."},
+  {date:"Sep 9", place:"East Java — Tumpak Sewu", tag:"Thousand Waterfalls", icon:"💦", flight:true, mode:"flight",
+   desc:"A short 07:00 hop from Denpasar to Surabaya, then overland to chase the legendary Tumpak Sewu — a horseshoe of cascading waterfalls straight out of a dream.",
+   details:["07:00 departure from Denpasar (DPS), non-stop ~1h flight to Surabaya Juanda (SUB)","Drive from Surabaya to the Tumpak Sewu base area","Trek down to the waterfall viewpoint (guide recommended)","Optional: Goa Tetes cave stop nearby","Overnight near Bromo for early sunrise trek"],
+   stay:"Homestay near Tumpak Sewu / en route to Bromo.",
+   tip:"The trek involves a steep, slippery descent — wear proper trekking shoes and hire a local guide.",
+   flightInfo:[
+     {flight:"IU 705", from:"Denpasar (DPS)", to:"Surabaya Juanda (SUB)", dep:"9 Sep, 07:00", arr:"~08:00 (1h, non-stop)", duration:"1h", ref:"LEWSFZ"}
+   ]},
+  {date:"Sep 10", place:"Mount Bromo", tag:"Sunrise Volcano Trek", icon:"🌋", mode:"car",
+   desc:"Wake before dawn for the iconic Mount Bromo sunrise over the Sea of Sand, followed by a jeep ride across the caldera.",
+   details:["Pre-dawn 4x4 jeep pickup (~2-3am)","Sunrise viewpoint at Penanjakan/King Kong Hill","Jeep ride across the Sea of Sand","Climb to Bromo crater rim","Stop at Teletubbies Hill on the way back"],
+   stay:"Cemoro Lawang / Bromo area guesthouse.",
+   tip:"It's freezing at the sunrise point — bring a jacket even though Indonesia is tropical."},
+  {date:"Sep 11", place:"Ijen Crater", tag:"Blue Fire Hike", icon:"🔥", mode:"car",
+   desc:"A midnight trek up Ijen Crater to witness the rare electric-blue sulfuric flames, then sunrise over the turquoise crater lake.",
+   details:["Transfer from Bromo to Ijen base (Banyuwangi side)","Midnight start — trek begins around 1am","Descend to the crater to see the blue sulfuric flames","Sunrise over the turquoise acid crater lake","Trek down and rest before the Bali ferry transfer"],
+   stay:"Basic guesthouse near Ijen — short rest.",
+   tip:"Rent a gas mask at the base — sulfur fumes near the crater are genuinely harsh."},
+  {date:"Sep 12", place:"Lovina", tag:"Dolphins & Black Sand", icon:"🐬", mode:"boat",
+   desc:"Back to Bali's north coast — an early boat ride to spot wild dolphins, then relax on Lovina's black sand beaches.",
+   details:["Ferry back from Banyuwangi (Ketapang) to Bali (Gilimanuk)","Drive to Lovina, North Bali","Very early morning boat trip to spot wild dolphins","Relax on Lovina's black sand beaches","Optional: nearby Banjar hot springs"],
+   stay:"Lovina beachfront guesthouse.",
+   tip:"The dolphin boats leave around 6am — sunrise on the water is half the experience."},
+  {date:"Sep 13", place:"Nusa Penida", tag:"Cliffs & Turquoise Water", icon:"🏝️", mode:"boat",
+   desc:"Island-hop to Nusa Penida for Kelingking Beach, Angel's Billabong, and Broken Beach — Bali's most dramatic coastline.",
+   details:["Transfer to Sanur and speedboat to Nusa Penida","Kelingking Beach viewpoint (Bali's most photographed cliff)","Angel's Billabong natural infinity pool","Broken Beach dramatic rock archway","Return speedboat to Bali by evening"],
+   stay:"Return to Kuta/Sanur for the last night.",
+   tip:"Book the speedboat + island tour combo in advance — Nusa Penida's roads are rough and best done with a local driver."},
+  {date:"Sep 14", place:"Return to Chennai", tag:"Homeward Bound", icon:"✈️", flight:true, mode:"flight",
+   desc:"Farewell Bali — fly Denpasar to Singapore, then connect onward to Chennai the same night with a memory card full of volcanoes, waterfalls, and turquoise water.",
+   details:["Last-minute souvenir shopping / breakfast by the beach","Check out and transfer to Denpasar Airport (DPS)","14:05 departure to Singapore (SIN), landing 16:55","4h 25m layover at Changi Terminal 1","21:20 onward flight to Chennai (MAA), landing 22:50 the same night"],
+   stay:"—",
+   tip:"Leave 3+ hours of buffer for the Denpasar departure — check-in queues can get congested.",
+   flightInfo:[
+     {flight:"TR 289 · Scoot B787-8", from:"Denpasar (DPS)", to:"Singapore (SIN) T1", dep:"14 Sep, 14:05", arr:"14 Sep, 16:55", duration:"2h 50m", ref:"LYYS6J"},
+     {flight:"TR 778 · Scoot B787-8", from:"Singapore (SIN) T1", to:"Chennai (MAA) T2", dep:"14 Sep, 21:20", arr:"14 Sep, 22:50", duration:"4h 00m", ref:"LYYS6J"}
+   ]},
+];
+
+const timelineEl = document.getElementById('timeline');
+const modeIcon = {flight:"✈️", car:"🚙", boat:"⛵", walk:"🚶"};
+itinerary.forEach((d, i) => {
+  const day = document.createElement('div');
+  day.className = 'day' + (d.flight ? ' flight' : '');
+  day.innerHTML = `
+    <div class="day-node"></div>
+    <div class="day-card">
+      <div class="mode-chip">${modeIcon[d.mode]}</div>
+      <div class="icon-badge">${d.icon}</div>
+      <span class="date">${d.date}</span>
+      <h3>${d.place}</h3>
+      <div class="tag">${d.tag}</div>
+      <p class="desc">${d.desc}</p>
+      ${d.flightInfo ? '<div class="booked-tag">🎫 Ticket booked</div>' : ''}
+    </div>`;
+  timelineEl.appendChild(day);
+});
+
+// ---- Draw dotted S-curve route connecting each (zig-zagging) node ----
+let path;
+function drawRoute(){
+  const svg = document.getElementById('routeSvg');
+  const wrap = document.querySelector('.timeline-wrap');
+  const nodes = document.querySelectorAll('.day-node');
+  const wrapRect = wrap.getBoundingClientRect();
+  svg.setAttribute('width', wrapRect.width);
+  svg.setAttribute('height', wrapRect.height);
+  svg.setAttribute('viewBox', `0 0 ${wrapRect.width} ${wrapRect.height}`);
+
+  const pts = Array.from(nodes).map(n => {
+    const r = n.getBoundingClientRect();
+    return { x: r.left - wrapRect.left + r.width/2, y: r.top - wrapRect.top + r.height/2 };
+  });
+
+  let d = '';
+  pts.forEach((p, i) => {
+    if(i === 0){
+      d += `M ${p.x} ${p.y}`;
+    } else {
+      const prev = pts[i-1];
+      const midY = (prev.y + p.y) / 2;
+      d += ` C ${prev.x} ${midY}, ${p.x} ${midY}, ${p.x} ${p.y}`;
+    }
+  });
+
+  const routePath = document.getElementById('routePath');
+  routePath.setAttribute('d', d);
+  path = routePath;
+}
+function initRoute(){ drawRoute(); }
+window.addEventListener('load', initRoute);
+window.addEventListener('resize', initRoute);
+
+// ---- Reveal on scroll + move traveler continuously along the S-curve, swapping vehicle per active leg ----
+const dayEls = () => document.querySelectorAll('.day');
+const traveler = document.getElementById('traveler');
+
+function onScroll(){
+  const wrap = document.querySelector('.timeline-wrap');
+  const wrapRect = wrap.getBoundingClientRect();
+  const days = dayEls();
+  let bestIdx = 0;
+  let bestDist = Infinity;
+
+  days.forEach((day, i) => {
+    const r = day.getBoundingClientRect();
+    if(r.top < window.innerHeight * 0.85){ day.classList.add('visible'); }
+    const dist = Math.abs((r.top + r.bottom)/2 - window.innerHeight * 0.42);
+    if(dist < bestDist){ bestDist = dist; bestIdx = i; }
+    if(r.top < window.innerHeight * 0.5 && r.bottom > window.innerHeight * 0.2){
+      day.classList.add('active');
+    } else {
+      day.classList.remove('active');
+    }
+  });
+
+  traveler.dataset.mode = itinerary[bestIdx].mode;
+
+  if(path){
+    const scrolled = -wrapRect.top + window.innerHeight * 0.42;
+    const progress = Math.max(0, Math.min(1, scrolled / wrapRect.height));
+
+    const len = path.getTotalLength();
+    const p1 = path.getPointAtLength(len * progress);
+    const p2 = path.getPointAtLength(Math.min(len, len * progress + 3));
+    const angle = Math.atan2(p2.y - p1.y, p2.x - p1.x) * 180 / Math.PI;
+
+    traveler.style.left = p1.x + 'px';
+    traveler.style.top = p1.y + 'px';
+
+    const mode = itinerary[bestIdx].mode;
+    if(mode === 'walk'){
+      traveler.style.transform = 'translate(-50%,-50%)';
+    } else {
+      traveler.style.transform = `translate(-50%,-50%) rotate(${angle + 90}deg)`;
+    }
+  }
+}
+window.addEventListener('scroll', onScroll);
+window.addEventListener('resize', () => { initRoute(); onScroll(); });
+window.addEventListener('load', () => { onScroll(); });
+
+// ---- Modal: detailed plan for a stop, opened by clicking the traveler or a day card ----
+const modalOverlay = document.getElementById('modalOverlay');
+const modalIcon = document.getElementById('modalIcon');
+const modalDate = document.getElementById('modalDate');
+const modalPlace = document.getElementById('modalPlace');
+const modalTag = document.getElementById('modalTag');
+const modalMode = document.getElementById('modalMode');
+const modalDesc = document.getElementById('modalDesc');
+const modalList = document.getElementById('modalList');
+const modalStay = document.getElementById('modalStay');
+const modalTip = document.getElementById('modalTip');
+const modalPrev = document.getElementById('modalPrev');
+const modalNext = document.getElementById('modalNext');
+const modalFlightSection = document.getElementById('modalFlightSection');
+const modalFlightList = document.getElementById('modalFlightList');
+let modalIndex = 0;
+let currentActiveIndex = 0;
+
+function openModal(index){
+  modalIndex = index;
+  const d = itinerary[index];
+  modalIcon.textContent = d.icon;
+  modalDate.textContent = d.date;
+  modalPlace.textContent = d.place;
+  modalTag.textContent = d.tag;
+  modalMode.textContent = MODE_LABEL[d.mode];
+  modalDesc.textContent = d.desc;
+  if(d.flightInfo && d.flightInfo.length){
+    modalFlightSection.style.display = 'block';
+    modalFlightList.innerHTML = d.flightInfo.map(f => `
+      <div class="modal-flight-card">
+        <div class="ff-top"><span>${f.flight}</span><span>${f.duration}</span></div>
+        <div class="ff-route">
+          <div class="ff-place"><span class="ff-time">${f.dep}</span><span class="ff-airport">${f.from}</span></div>
+          <div class="ff-arrow">✈️ →</div>
+          <div class="ff-place" style="text-align:right;"><span class="ff-time">${f.arr}</span><span class="ff-airport">${f.to}</span></div>
+        </div>
+        <div class="ff-meta"><span>Booking ref: ${f.ref}</span></div>
+      </div>`).join('');
+  } else {
+    modalFlightSection.style.display = 'none';
+    modalFlightList.innerHTML = '';
+  }
+  modalList.innerHTML = d.details.map(item => `<li>${item}</li>`).join('');
+  modalStay.textContent = d.stay;
+  modalTip.innerHTML = `<b>Traveler tip:</b> ${d.tip}`;
+  modalPrev.disabled = index === 0;
+  modalNext.disabled = index === itinerary.length - 1;
+  modalOverlay.classList.add('open');
+}
+function closeModal(){ modalOverlay.classList.remove('open'); }
+
+traveler.addEventListener('click', () => {
+  const days = dayEls();
+  let bestIdx = 0, bestDist = Infinity;
+  days.forEach((day, i) => {
+    const r = day.getBoundingClientRect();
+    const dist = Math.abs((r.top + r.bottom)/2 - window.innerHeight * 0.42);
+    if(dist < bestDist){ bestDist = dist; bestIdx = i; }
+  });
+  openModal(bestIdx);
+});
+document.getElementById('modalClose').addEventListener('click', closeModal);
+modalOverlay.addEventListener('click', (e) => { if(e.target === modalOverlay) closeModal(); });
+modalPrev.addEventListener('click', () => { if(modalIndex > 0) openModal(modalIndex - 1); });
+modalNext.addEventListener('click', () => { if(modalIndex < itinerary.length - 1) openModal(modalIndex + 1); });
+document.addEventListener('keydown', (e) => { if(e.key === 'Escape') closeModal(); });
+
+timelineEl.addEventListener('click', (e) => {
+  const dayEl = e.target.closest('.day');
+  if(!dayEl) return;
+  const idx = Array.from(dayEls()).indexOf(dayEl);
+  openModal(idx);
+});
+
+// ---- Hero plane animation along its dashed path ----
+const heroPath = document.getElementById('heroDash');
+const heroPlane = document.getElementById('heroPlane');
+let heroT = 0;
+function animateHeroPlane(){
+  const len = heroPath.getTotalLength();
+  heroT += 0.0009;
+  if(heroT > 1) heroT = 0;
+  const pt = heroPath.getPointAtLength(len * heroT);
+  const pt2 = heroPath.getPointAtLength(Math.min(len, len*heroT + 2));
+  const angle = Math.atan2(pt2.y - pt.y, pt2.x - pt.x) * 180 / Math.PI;
+  heroPlane.style.left = pt.x + 'px';
+  heroPlane.style.top = pt.y + 'px';
+  heroPlane.style.transform = `translate(-50%,-50%) rotate(${angle}deg)`;
+  requestAnimationFrame(animateHeroPlane);
+}
+requestAnimationFrame(animateHeroPlane);
+</script>
+
+</body>
+</html>
